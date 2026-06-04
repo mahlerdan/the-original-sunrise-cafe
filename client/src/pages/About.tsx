@@ -23,10 +23,20 @@ export default function About() {
 
   return (
     <Layout>
-      {/* Header Banner Section */}
-      <section className="relative overflow-hidden py-16 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground border-b border-border/10">
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/10 blur-3xl pointer-events-none"></div>
-        <div className="container text-center max-w-3xl mx-auto flex flex-col gap-4 relative z-10">
+      {/* Header Banner Section with photo background */}
+      <section className="relative overflow-hidden py-24 text-primary-foreground border-b border-border/10">
+        {/* Background photo */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-diner.jpg"
+            alt="The Original Sunrise Cafe interior"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-primary/85"></div>
+        </div>
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-secondary/10 blur-3xl pointer-events-none z-10"></div>
+        <div className="container text-center max-w-3xl mx-auto flex flex-col gap-4 relative z-20">
           <span className="text-xs sm:text-sm font-bold text-secondary tracking-wider uppercase bg-secondary/10 border border-secondary/20 px-4 py-1.5 rounded-full self-center">
             Our Story & Legacy
           </span>
@@ -43,22 +53,26 @@ export default function About() {
       <section className="py-20 bg-background">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Column: Artistic Brand Graphic (No stock images) */}
+            {/* Left Column: Real restaurant photo */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="relative w-full max-w-md bg-gradient-to-br from-secondary/30 via-accent/10 to-primary/10 p-8 sm:p-12 rounded-3xl border border-border/40 shadow-inner flex flex-col gap-6 text-center overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-secondary/10 blur-xl pointer-events-none"></div>
-                <Sun className="w-16 h-16 text-secondary mx-auto animate-spin-slow" />
-                <h3 className="font-serif font-bold text-2xl text-primary">Est. 1995</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  "Over 30 years of early mornings, hot coffee, and full plates. We're proud to be Boise's home away from home."
-                </p>
-                <div className="border-t border-border/40 pt-4 mt-2">
-                  <div className="flex justify-center gap-1 text-secondary mb-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
-                    ))}
+              <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border border-border/40">
+                <img
+                  src="/images/about-restaurant.jpg"
+                  alt="The Original Sunrise Cafe warm dining atmosphere"
+                  className="w-full h-96 object-cover"
+                  loading="lazy"
+                />
+                {/* Overlay badge */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent p-6">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-serif font-bold text-2xl text-secondary">Est. 1995</h3>
+                    <div className="flex gap-1 text-secondary">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-current" />
+                      ))}
+                    </div>
+                    <p className="text-xs text-primary-foreground/80 font-semibold">1,500+ Five-Star Guest Reviews</p>
                   </div>
-                  <p className="text-xs text-muted-foreground font-semibold">1,500+ Five-Star Guest Reviews</p>
                 </div>
               </div>
             </div>
@@ -113,22 +127,46 @@ export default function About() {
         </div>
       </section>
 
-      {/* Meet the Team Teaser */}
+      {/* Meet the Team Teaser with food photo strip */}
       <section className="py-20 bg-background">
-        <div className="container text-center max-w-3xl mx-auto flex flex-col gap-6">
-          <Users className="w-12 h-12 text-secondary mx-auto" />
-          <h2 className="font-serif font-bold text-3xl text-foreground">Our Dedicated Morning Crew</h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-            Our incredible kitchen staff, friendly servers, and welcoming hosts are the heartbeat of The Original Sunrise Cafe. Many of our team members have been with us for years, dedicating their early mornings to making sure your coffee cup is never empty and your food is prepared exactly to your liking. The next time you visit us in Meridian, be sure to say hello!
-          </p>
-          <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
-            <a
-              href="tel:2088884517"
-              className="flex items-center justify-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 rounded-xl font-bold transition-all duration-200 active:scale-95 shadow-sm"
-            >
-              <Phone className="w-4 h-4" />
-              <span>Call Us: (208) 888-4517</span>
-            </a>
+        <div className="container">
+          {/* Photo strip */}
+          <div className="grid grid-cols-3 gap-3 mb-12 rounded-2xl overflow-hidden max-w-3xl mx-auto">
+            <img
+              src="/images/service-pancakes.jpg"
+              alt="Fluffy buttermilk pancakes"
+              className="w-full h-40 object-cover"
+              loading="lazy"
+            />
+            <img
+              src="/images/service-breakfast-plate.jpg"
+              alt="Classic American breakfast plate"
+              className="w-full h-40 object-cover"
+              loading="lazy"
+            />
+            <img
+              src="/images/service-biscuits-gravy.jpg"
+              alt="House-made biscuits and gravy"
+              className="w-full h-40 object-cover"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="text-center max-w-3xl mx-auto flex flex-col gap-6">
+            <Users className="w-12 h-12 text-secondary mx-auto" />
+            <h2 className="font-serif font-bold text-3xl text-foreground">Our Dedicated Morning Crew</h2>
+            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+              Our incredible kitchen staff, friendly servers, and welcoming hosts are the heartbeat of The Original Sunrise Cafe. Many of our team members have been with us for years, dedicating their early mornings to making sure your coffee cup is never empty and your food is prepared exactly to your liking. The next time you visit us in Meridian, be sure to say hello!
+            </p>
+            <div className="mt-4 flex flex-col sm:flex-row justify-center gap-4">
+              <a
+                href="tel:2088884517"
+                className="flex items-center justify-center gap-2 bg-secondary text-secondary-foreground hover:bg-secondary/90 px-6 py-3 rounded-xl font-bold transition-all duration-200 active:scale-95 shadow-sm"
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Us: (208) 888-4517</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>

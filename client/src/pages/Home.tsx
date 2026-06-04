@@ -33,32 +33,46 @@ export default function Home() {
       icon: <Egg className="w-6 h-6 text-primary" />,
       title: "All-Day Breakfast",
       desc: "From fluffy pancakes to customized three-egg omelets, we serve your favorite breakfast classics all day.",
+      image: "/images/service-pancakes.jpg",
+      imageAlt: "Stack of fluffy buttermilk pancakes with maple syrup",
     },
     {
       icon: <Coffee className="w-6 h-6 text-primary" />,
       title: "Fresh Brewed Coffee",
       desc: "Enjoy unlimited refills of our signature premium blend, roasted to perfection to kickstart your morning.",
+      image: "/images/service-coffee.jpg",
+      imageAlt: "Freshly brewed hot coffee in a classic diner mug",
     },
     {
       icon: <Utensils className="w-6 h-6 text-primary" />,
       title: "Hearty Brunch Favorites",
       desc: "Indulge in our famous chicken fried steak, house-made biscuits & gravy, and savory breakfast skillets.",
+      image: "/images/service-breakfast-plate.jpg",
+      imageAlt: "Hearty American breakfast plate with eggs, bacon, and hash browns",
     },
   ];
 
   return (
     <Layout>
-      {/* Hero Section with Beautiful CSS-Gradient-Based Sunrise Art */}
-      <section className="relative overflow-hidden py-20 lg:py-32 bg-gradient-to-br from-background via-background to-secondary/10 border-b border-border/40">
-        {/* Dynamic Sunrise Decorative Background */}
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-secondary/40 to-accent/20 blur-[100px] pointer-events-none opacity-60"></div>
-        <div className="absolute top-12 left-12 w-24 h-24 rounded-full bg-secondary/10 blur-xl pointer-events-none"></div>
+      {/* Hero Section with Real Photo Background */}
+      <section className="relative overflow-hidden min-h-[85vh] flex items-center border-b border-border/40">
+        {/* Full-bleed hero image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/images/hero-diner.jpg"
+            alt="The Original Sunrise Cafe warm diner interior"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+          {/* Gradient overlay for text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/75 to-background/20"></div>
+        </div>
 
-        <div className="container relative z-10">
+        <div className="container relative z-10 py-20 lg:py-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 flex flex-col gap-6 text-left">
-              <div className="inline-flex items-center gap-2 bg-secondary/20 text-foreground px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border border-secondary/30 self-start">
+              <div className="inline-flex items-center gap-2 bg-secondary/20 text-foreground px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold border border-secondary/30 self-start backdrop-blur-sm">
                 <Sun className="w-4 h-4 text-primary animate-pulse" />
                 <span>Boise's Best Breakfast Since 1995</span>
               </div>
@@ -111,27 +125,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-
-            {/* Right Graphic/Illustration (Artistic abstract plate representation) */}
-            <div className="lg:col-span-5 flex justify-center items-center">
-              <div className="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-secondary/20 via-accent/10 to-primary/10 flex items-center justify-center border-4 border-dashed border-primary/20 shadow-inner">
-                {/* Floating graphic elements */}
-                <div className="absolute top-1/4 left-1/4 w-12 h-12 rounded-full bg-secondary/80 flex items-center justify-center text-secondary-foreground shadow-md animate-bounce">
-                  <Egg className="w-6 h-6" />
-                </div>
-                <div className="absolute bottom-1/4 right-1/4 w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-md animate-pulse">
-                  <Coffee className="w-6 h-6" />
-                </div>
-                
-                {/* Main Plate Art */}
-                <div className="w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-background border-8 border-double border-primary/20 shadow-xl flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
-                  <div className="absolute -top-12 -right-12 w-24 h-24 rounded-full bg-secondary/30 blur-lg"></div>
-                  <Sun className="w-16 h-16 text-secondary mb-3 animate-spin-slow" />
-                  <h3 className="font-serif font-bold text-xl sm:text-2xl text-primary leading-tight">Freshly Prepared Daily</h3>
-                  <p className="text-xs text-muted-foreground mt-1 max-w-[180px]">Made-to-order with love, butter, and local Idaho ingredients.</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -152,13 +145,26 @@ export default function Home() {
             {previewServices.map((service, idx) => (
               <div
                 key={idx}
-                className="bg-card text-card-foreground p-8 rounded-2xl border border-border/40 hover:border-primary/20 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col gap-4 group"
+                className="bg-card text-card-foreground rounded-2xl border border-border/40 hover:border-primary/20 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col group overflow-hidden"
               >
-                <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  {service.icon}
+                {/* Service photo */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.imageAlt}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent"></div>
                 </div>
-                <h3 className="font-serif font-bold text-xl text-primary">{service.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
+                {/* Card content */}
+                <div className="p-8 flex flex-col gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-secondary/20 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    {service.icon}
+                  </div>
+                  <h3 className="font-serif font-bold text-xl text-primary">{service.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{service.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -179,21 +185,21 @@ export default function Home() {
       <section className="py-20 bg-muted/30 border-b border-border/40">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Graphic Badge */}
+            {/* Photo of restaurant */}
             <div className="lg:col-span-5 flex justify-center">
-              <div className="bg-primary text-primary-foreground p-8 sm:p-12 rounded-3xl shadow-xl relative max-w-md overflow-hidden border-2 border-secondary/30">
-                <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-secondary/10 blur-xl pointer-events-none"></div>
-                <div className="flex flex-col gap-4 relative z-10">
-                  <div className="w-12 h-12 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center font-bold">
-                    <Heart className="w-6 h-6 text-primary fill-primary" />
-                  </div>
-                  <h3 className="font-serif font-bold text-2xl text-secondary">Our Idaho Promise</h3>
-                  <p className="text-sm text-primary-foreground/90 leading-relaxed">
-                    "We promise to serve you the freshest ingredients, prepare every dish with care, and welcome you with the same warm Idaho hospitality that has defined our family since day one."
-                  </p>
-                  <div className="border-t border-primary-foreground/10 pt-4 mt-2">
-                    <p className="font-bold text-sm text-secondary">The Sunrise Family</p>
-                    <p className="text-xs text-primary-foreground/60">Boise & Meridian, Idaho</p>
+              <div className="relative w-full max-w-md rounded-3xl overflow-hidden shadow-xl border-2 border-secondary/30">
+                <img
+                  src="/images/about-restaurant.jpg"
+                  alt="The Original Sunrise Cafe warm dining room atmosphere"
+                  className="w-full h-80 object-cover"
+                  loading="lazy"
+                />
+                {/* Overlay badge */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 to-transparent p-6">
+                  <div className="flex flex-col gap-1">
+                    <Heart className="w-6 h-6 text-secondary fill-secondary" />
+                    <h3 className="font-serif font-bold text-xl text-secondary">Our Idaho Promise</h3>
+                    <p className="text-xs text-primary-foreground/80">Boise & Meridian, Idaho</p>
                   </div>
                 </div>
               </div>
@@ -244,7 +250,7 @@ export default function Home() {
                 key={idx}
                 className="bg-card text-card-foreground p-8 rounded-2xl border border-border/40 shadow-sm flex flex-col justify-between gap-6 relative"
               >
-                <div className="absolute top-6 right-8 text-6xl font-serif text-secondary/20 select-none">“</div>
+                <div className="absolute top-6 right-8 text-6xl font-serif text-secondary/20 select-none">"</div>
                 <div className="flex flex-col gap-4 relative z-10">
                   {/* Star Rating */}
                   <div className="flex gap-1">
